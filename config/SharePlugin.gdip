@@ -1,0 +1,23 @@
+;
+; © 2024-present https://github.com/cengiz-pz
+;
+
+[config]
+
+name="SharePlugin"
+binary="SharePlugin.release.a"
+initialization="share_plugin_init"
+deinitialization="share_plugin_deinit"
+
+
+[dependencies]
+
+linked=[]
+embedded=[]
+system=[]
+capabilities=[]
+files=[]
+linker_flags=[]
+
+
+[plist]
