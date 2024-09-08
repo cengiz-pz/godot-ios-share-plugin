@@ -27,6 +27,7 @@ There are 2 ways to install the `Share Plugin` into your project:
 - unzip the release archive
 - copy contents of the unzipped directory into your project's root directory
 - enable the plugin via the `Plugins` tab of `Project->Project Settings...` menu, in the Godot Editor
+
 <br/><br/>
 
 ## ![](addon/icon.png?raw=true) Usage
@@ -36,16 +37,32 @@ Add a `Share` node to your scene and follow the following steps:
     - `share_image(full_path_for_saved_image_file, title, subject, content)`
         - Note that the image you want to share must be saved under the `user://` virtual directory in order to be accessible. The `OS.get_user_data_dir()` method can be used to get the absolute path for the `user://` directory. See the implementation of `share_viewport()` method for sample code.
     - `share_viewport(viewport, title, subject, content)`
+
 <br/><br/><br/>
 ## ![](addon/icon.png?raw=true) Export to iOS
 Follow instructions on the following page to export your project and run on an iOS device:
 - [Exporting for iOS](https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_ios.html)
+
 <br/><br/><br/>
+
 ---
 # ![](addon/icon.png?raw=true) Credits
+
 Based on [Shin-NiL](https://github.com/Shin-NiL)'s [Godot Share Plugin](https://github.com/Shin-NiL/Godot-Android-Share-Plugin)
 
 Developed by [Cengiz](https://github.com/cengiz-pz)
 
 Original repository: [Godot iOS Share Plugin](https://github.com/cengiz-pz/godot-ios-share-plugin)
 
+<br/><br/><br/>
+
+---
+# ![](addon/icon.png?raw=true) All Plugins
+
+| Plugin | Android | iOS |
+| :---: | :--- | :--- |
+| Notification Scheduler | https://github.com/cengiz-pz/godot-android-notification-scheduler-plugin | https://github.com/cengiz-pz/godot-ios-notification-scheduler-plugin |
+| Admob | https://github.com/cengiz-pz/godot-android-admob-plugin | https://github.com/cengiz-pz/godot-ios-admob-plugin |
+| Deeplink | https://github.com/cengiz-pz/godot-android-deeplink-plugin | https://github.com/cengiz-pz/godot-ios-deeplink-plugin |
+| Share | https://github.com/cengiz-pz/godot-android-share-plugin | https://github.com/cengiz-pz/godot-ios-share-plugin |
+| In-App Review | https://github.com/cengiz-pz/godot-android-inapp-review-plugin | https://github.com/cengiz-pz/godot-ios-inapp-review-plugin |
