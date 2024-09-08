@@ -5,7 +5,7 @@
 [config]
 
 name="SharePlugin"
-binary="SharePlugin.release.a"
+binary="SharePlugin.a"
 initialization="share_plugin_init"
 deinitialization="share_plugin_deinit"
 
