@@ -49,6 +49,7 @@ Follow instructions on the following page to export your project and run on an i
 # ![](addon/icon.png?raw=true) Credits
 
 Based on [Shin-NiL](https://github.com/Shin-NiL)'s [Godot Share Plugin](https://github.com/Shin-NiL/Godot-Android-Share-Plugin)
+Also based on: [Godot iOS Plugin Template](https://github.com/cengiz-pz/godot-ios-plugin-template)
 
 Developed by [Cengiz](https://github.com/cengiz-pz)
 
