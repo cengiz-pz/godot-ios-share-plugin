@@ -1,3 +1,6 @@
+<p align="center">
+  <img width="256" height="256" src="demo/share.png">
+</p>
 
 ---
 # ![](addon/icon.png?raw=true) Share Plugin
@@ -48,14 +51,69 @@ Follow instructions on the following page to export your project and run on an i
 ---
 # ![](addon/icon.png?raw=true) Credits
 
-Based on [Shin-NiL](https://github.com/Shin-NiL)'s [Godot Share Plugin](https://github.com/Shin-NiL/Godot-Android-Share-Plugin)
-Also based on: [Godot iOS Plugin Template](https://github.com/cengiz-pz/godot-ios-plugin-template)
-
 Developed by [Cengiz](https://github.com/cengiz-pz)
+
+Based on [Shin-NiL](https://github.com/Shin-NiL)'s [Godot Share Plugin](https://github.com/Shin-NiL/Godot-Android-Share-Plugin)
+
+Also based on: [Godot iOS Plugin Template](https://github.com/cengiz-pz/godot-ios-plugin-template)
 
 Original repository: [Godot iOS Share Plugin](https://github.com/cengiz-pz/godot-ios-share-plugin)
 
 <br/><br/><br/>
+
+
+___
+
+# ![](addon/icon.png?raw=true) Contribution
+
+This section provides information on how to build the plugin for contributors.
+
+<br/>
+
+___
+
+## ![](addon/icon.png?raw=true) Prerequisites
+
+- [Install SCons](https://scons.org/doc/production/HTML/scons-user/ch01s02.html)
+- [Install CocoaPods](https://guides.cocoapods.org/using/getting-started.html)
+
+<br/>
+
+___
+
+## ![](addon/icon.png?raw=true) Build
+
+- Run `./script/build.sh -A <godot version>` initially to run a full build
+- Run `./script/build.sh -cgA <godot version>` to clean, redownload Godot, and rebuild
+- Run `./script/build.sh -ca` to clean and build without redownloading Godot
+- Run `./script/build.sh -h` for more information on the build script
+
+<br/>
+
+___
+
+## ![](addon/icon.png?raw=true) Git addon submodule
+
+
+### ![](addon/icon.png?raw=true) Creating
+
+- `git submodule add -b main --force --name addon https://github.com/cengiz-pz/godot-share-addon.git addon`
+
+
+### ![](addon/icon.png?raw=true) Updating
+
+- Remove `addon` directory
+- Run `git submodule update --remote --merge`
+
+<br/>
+
+___
+
+## ![](addon/icon.png?raw=true) Libraries
+
+Library archives will be created in the `bin/release` directory.
+
+<br/><br/>
 
 ---
 # ![](addon/icon.png?raw=true) All Plugins
