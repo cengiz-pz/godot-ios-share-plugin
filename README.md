@@ -1,3 +1,6 @@
+<p align="center">
+  <img width="256" height="256" src="demo/share.png">
+</p>
 
 ---
 # ![](addon/icon.png?raw=true) Share Plugin
@@ -48,9 +51,11 @@ Follow instructions on the following page to export your project and run on an i
 ---
 # ![](addon/icon.png?raw=true) Credits
 
+Developed by [Cengiz](https://github.com/cengiz-pz)
+
 Based on [Shin-NiL](https://github.com/Shin-NiL)'s [Godot Share Plugin](https://github.com/Shin-NiL/Godot-Android-Share-Plugin)
 
-Developed by [Cengiz](https://github.com/cengiz-pz)
+Also based on: [Godot iOS Plugin Template](https://github.com/cengiz-pz/godot-ios-plugin-template)
 
 Original repository: [Godot iOS Share Plugin](https://github.com/cengiz-pz/godot-ios-share-plugin)
 
