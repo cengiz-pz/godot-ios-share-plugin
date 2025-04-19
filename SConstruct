@@ -2,6 +2,7 @@
 #
 # © 2024-present https://github.com/cengiz-pz
 #
+import os
 import sys
 import subprocess
 
@@ -20,6 +21,8 @@ opts = Variables([], ARGUMENTS)
 # Gets the standard flags CC, CCX, etc.
 env = DefaultEnvironment()
 
+valid_godot_versions = ['', '4.1', '4.2', '4.3', '4.4.1', '4.5']
+
 # Define our options
 opts.Add(EnumVariable('target', "Compilation target", 'debug', ['debug', 'release', "release_debug"]))
 opts.Add(EnumVariable('arch', "Compilation Architecture", '', ['', 'arm64', 'x86_64']))
@@ -27,7 +30,7 @@ opts.Add(BoolVariable('simulator', "Compilation platform", 'no'))
 opts.Add(BoolVariable('use_llvm', "Use the LLVM / Clang compiler", 'no'))
 opts.Add('target_name', 'Resulting file name.', '')
 opts.Add(PathVariable('target_path', 'The path where the lib is installed.', 'bin/lib/'))
-opts.Add(EnumVariable('version', 'Godot version to target', '', ['', '4.1', '4.2', '4.3', '4.4']))
+opts.Add(EnumVariable('version', 'Godot version to target', '', valid_godot_versions))
 
 # Updates the environment with the option variables.
 opts.Update(env)
@@ -59,12 +62,15 @@ if env['target_name'] == '':
 
 # Enable Obj-C modules
 env.Append(CCFLAGS=["-fmodules", "-fcxx-modules"])
+architecture_directory = ''
 
 if env['simulator']:
+	architecture_directory = 'ios-arm64_x86_64-simulator'
 	sdk_name = 'iphonesimulator'
 	env.Append(CCFLAGS=['-mios-simulator-version-min=10.0'])
 	env.Append(LINKFLAGS=["-mios-simulator-version-min=10.0"])
 else:
+	architecture_directory = 'ios-arm64'
 	sdk_name = 'iphoneos'
 	env.Append(CCFLAGS=['-miphoneos-version-min=10.0'])
 	env.Append(LINKFLAGS=["-miphoneos-version-min=10.0"])
@@ -92,9 +98,12 @@ env.Prepend(CXXFLAGS=[
 ])
 env.Append(LINKFLAGS=["-arch", env['arch'], '-isysroot', sdk_path, '-F' + sdk_path])
 
+env.Append(CCFLAGS=["$IOS_SDK_PATH"])
+env.Prepend(CXXFLAGS=['-DIOS_ENABLED'])
+env.Prepend(CXXFLAGS=['-DVERSION_4_0'])
 
 
-if env['version'] == '4.1' or env['version'] == '4.2' or env['version'] == '4.3' or env['version'] == '4.4':
+if env['version'] in valid_godot_versions:
 	env.Prepend(CFLAGS=['-std=gnu11'])
 	env.Prepend(CXXFLAGS=['-DVULKAN_ENABLED', '-std=gnu++17'])
 
@@ -117,14 +126,14 @@ if env['version'] == '4.1' or env['version'] == '4.2' or env['version'] == '4.3'
 			'-DNDEBUG', '-DNS_BLOCK_ASSERTIONS=1',
 		])
 
-		env.Prepend(CXXFLAGS=['-fomit-frame-pointer'])            
+		env.Prepend(CXXFLAGS=['-fomit-frame-pointer'])
 else:
 	print("No valid Godot version to set flags for.")
 	quit();
 
 # Adding header files
 env.Append(CPPPATH=[
-	'.', 
+	f'{plugin_name}',
 	'godot',
 	'godot/platform/ios',
 ])
@@ -133,6 +142,9 @@ env.Append(CPPPATH=[
 sources = Glob(f'{plugin_name}/*.cpp')
 sources.append(Glob(f'{plugin_name}/*.mm'))
 sources.append(Glob(f'{plugin_name}/*.m'))
+sources.append(Glob(f'{plugin_name}/**/*.cpp'))
+sources.append(Glob(f'{plugin_name}/**/*.mm'))
+sources.append(Glob(f'{plugin_name}/**/*.m'))
 
 # lib<plugin>.<arch>-<simulator|iphone>.<release|debug|release_debug>.a
 library_platform = env["arch"] + "-" + ("simulator" if env["simulator"] else "ios")
