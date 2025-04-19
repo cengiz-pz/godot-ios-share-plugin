@@ -3,7 +3,7 @@
 </p>
 
 ---
-# ![](addon/icon.png?raw=true) Share Plugin
+# ![](addon/icon.png?raw=true) iOS Share Plugin
 Godot iOS Share Plugin allows sharing of text and images on the iOS platform.
 
 ## ![](addon/icon.png?raw=true) Android Version

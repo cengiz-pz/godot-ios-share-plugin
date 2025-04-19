@@ -12,7 +12,8 @@
 String const DATA_KEY_TITLE = "title";
 String const DATA_KEY_SUBJECT = "subject";
 String const DATA_KEY_CONTENT = "content";
-String const DATA_KEY_IMAGE_PATH = "image_path";
+String const DATA_KEY_FILE_PATH = "file_path";
+String const DATA_KEY_MIME_TYPE = "mime_type";
 
 String const SIGNAL_NAME_SHARE_COMPLETED = "share_completed";
 
@@ -28,9 +29,17 @@ Error SharePlugin::share(const Dictionary &sharedData) {
 
 	UIViewController* rootController = [[UIApplication sharedApplication] delegate].window.rootViewController;
 	
-	NSArray* sharedItems = sharedData.has(DATA_KEY_IMAGE_PATH) ?
-				@[toNsString(sharedData[DATA_KEY_CONTENT]), [UIImage imageWithContentsOfFile: toNsString(sharedData[DATA_KEY_IMAGE_PATH])]] :
-				@[toNsString(sharedData[DATA_KEY_CONTENT])];
+	NSArray* sharedItems;
+	if (sharedData.has(DATA_KEY_FILE_PATH)) {
+		if (!sharedData.has(DATA_KEY_MIME_TYPE) || (sharedData.has(DATA_KEY_MIME_TYPE) && [toNsString(sharedData[DATA_KEY_MIME_TYPE]) compare: @"image" options: NSCaseInsensitiveSearch range: NSMakeRange(0,5)] == NSOrderedSame)) {
+			sharedItems = @[toNsString(sharedData[DATA_KEY_CONTENT]), [UIImage imageWithContentsOfFile: toNsString(sharedData[DATA_KEY_FILE_PATH])]];
+		} else {
+			sharedItems = @[toNsString(sharedData[DATA_KEY_CONTENT]), [NSData dataWithContentsOfFile: toNsString(sharedData[DATA_KEY_FILE_PATH])]];
+		}
+	} else {
+		sharedItems = @[toNsString(sharedData[DATA_KEY_CONTENT])]; // text only
+	}
+	
 	
 	UIActivityViewController* avc = [[UIActivityViewController alloc] initWithActivityItems: sharedItems applicationActivities: nil];
 	// if iPhone
