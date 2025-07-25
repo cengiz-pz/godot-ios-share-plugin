@@ -6,6 +6,7 @@
 
 name="SharePlugin"
 binary="SharePlugin.a"
+
 initialization="share_plugin_init"
 deinitialization="share_plugin_deinit"
 
@@ -14,10 +15,13 @@ deinitialization="share_plugin_deinit"
 
 linked=[]
 embedded=[]
-system=[]
+system=["Foundation.framework"]
+
 capabilities=[]
+
 files=[]
-linker_flags=[]
+
+linker_flags=["-ObjC"]
 
 
 [plist]

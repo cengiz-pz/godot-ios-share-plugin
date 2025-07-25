@@ -9,7 +9,7 @@ $${\color{red}25/07/2025: \space This \space repository \space has \space moved 
 </p>
 
 ---
-# ![](addon/icon.png?raw=true) Share Plugin
+# ![](addon/icon.png?raw=true) iOS Share Plugin
 Godot iOS Share Plugin allows sharing of text and images on the iOS platform.
 
 ## ![](addon/icon.png?raw=true) Android Version
@@ -25,9 +25,9 @@ There are 2 ways to install the `Share Plugin` into your project:
 - search for and select the `iOS Share Plugin` in Godot Editor's AssetLib tab
 - click `Download` button
 - on the installation dialog...
-  - leave your project's root directory selected as the target directory
-  - leave `Ignore asset root` checkbox checked
-  - click `Install` button
+	- leave your project's root directory selected as the target directory
+	- leave `Ignore asset root` checkbox checked
+	- click `Install` button
 - enable the addon via the `Plugins` tab of `Project->Project Settings...` menu, in the Godot Editor
 - enable the plugin in your project's iOS export settings via `Project->Export...->iOS` in the Godot Editor
 
@@ -42,10 +42,10 @@ There are 2 ways to install the `Share Plugin` into your project:
 ## ![](addon/icon.png?raw=true) Usage
 Add a `Share` node to your scene and follow the following steps:
 - use one of the following methods of the `Share` node to share text or images:
-    - `share_text(title, subject, content)`
-    - `share_image(full_path_for_saved_image_file, title, subject, content)`
-        - Note that the image you want to share must be saved under the `user://` virtual directory in order to be accessible. The `OS.get_user_data_dir()` method can be used to get the absolute path for the `user://` directory. See the implementation of `share_viewport()` method for sample code.
-    - `share_viewport(viewport, title, subject, content)`
+		- `share_text(title, subject, content)`
+		- `share_image(full_path_for_saved_image_file, title, subject, content)`
+				- Note that the image you want to share must be saved under the `user://` virtual directory in order to be accessible. The `OS.get_user_data_dir()` method can be used to get the absolute path for the `user://` directory. See the implementation of `share_viewport()` method for sample code.
+		- `share_viewport(viewport, title, subject, content)`
 
 <br/><br/><br/>
 ## ![](addon/icon.png?raw=true) Export to iOS
@@ -66,7 +66,6 @@ Also based on: [Godot iOS Plugin Template](https://github.com/cengiz-pz/godot-io
 Original repository: [Godot iOS Share Plugin](https://github.com/cengiz-pz/godot-ios-share-plugin)
 
 <br/><br/><br/>
-
 
 ___
 
@@ -92,7 +91,16 @@ ___
 - Run `./script/build.sh -A <godot version>` initially to run a full build
 - Run `./script/build.sh -cgA <godot version>` to clean, redownload Godot, and rebuild
 - Run `./script/build.sh -ca` to clean and build without redownloading Godot
+- Run `./script/build.sh -cb -z4.0` to clean and build plugin without redownloading Godot and package in a zip archive as version 4.0
 - Run `./script/build.sh -h` for more information on the build script
+<br/>
+
+___
+
+## ![](addon/icon.png?raw=true) Install Script
+
+- Run `./script/install.sh -t <target directory> -z <path to zip file>` install plugin to a Godot project.
+- Example `./script/install.sh -t demo -z bin/release/SharePlugin-v4.0.zip` to install to demo app.
 
 <br/>
 
@@ -119,7 +127,7 @@ ___
 
 Library archives will be created in the `bin/release` directory.
 
-<br/><br/>
+<br/><br/><br/>
 
 ---
 # ![](addon/icon.png?raw=true) All Plugins
